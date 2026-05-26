@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Cadastro</h4>
+        </div>
+
+        <div class="card-body">
+
+          @if (mensagem) {
+            <div class="alert alert-{{ tipoMensagem }} alert-dismissible fade show" role="alert">
+              {{ mensagem }}
+              <button type="button" class="btn-close" (click)="mensagem=''"></button>
+            </div>
+          }
+
+          <form [formGroup]="formularioCadastro" (ngSubmit)="onSubmit()">
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Email</label>
+              <input type="email" id="email" class="form-control"
+                     formControlName="email" placeholder="seu@email.com">
+              @if (formularioCadastro.get('email')?.hasError('required') &&
+                   formularioCadastro.get('email')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>email</strong> é obrigatório!
+                </div>
+              }
+              @if (formularioCadastro.get('email')?.hasError('email') &&
+                   formularioCadastro.get('email')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Informe um <strong>email válido</strong>!
+                </div>
+              }
+            </div>
+
+            <!-- Nome -->
+            <div class="mb-3">
+              <label for="nome" class="form-label fw-semibold">Nome</label>
+              <input type="text" id="nome" class="form-control"
+                     formControlName="nome" placeholder="Seu nome completo">
+              @if (formularioCadastro.get('nome')?.hasError('required') &&
+                   formularioCadastro.get('nome')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>nome</strong> é obrigatório!
+                </div>
+              }
+              @if (formularioCadastro.get('nome')?.hasError('minlength') &&
+                   formularioCadastro.get('nome')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Nome precisa ter pelo menos <strong>3 caracteres</strong>!
+                </div>
+              }
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-4">
+              <label for="senha" class="form-label fw-semibold">Senha</label>
+              <input type="password" id="senha" class="form-control"
+                     formControlName="senha" maxlength="30"
+                     placeholder="Mínimo 8 caracteres">
+              @if (formularioCadastro.get('senha')?.hasError('required') &&
+                   formularioCadastro.get('senha')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>senha</strong> é obrigatório!
+                </div>
+              }
+              @if (formularioCadastro.get('senha')?.hasError('minlength') &&
+                   formularioCadastro.get('senha')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Senha precisa ter pelo menos <strong>8 caracteres</strong>!
+                </div>
+              }
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary"
+                      [disabled]="!formularioCadastro.valid">
+                Criar conta
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="card-footer text-center text-muted">
+          Já tem conta? <a routerLink="/login">Faça login</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

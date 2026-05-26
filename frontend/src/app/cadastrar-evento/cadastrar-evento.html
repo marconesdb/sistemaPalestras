@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+
+      <div class="card shadow">
+        <div class="card-header bg-danger text-white text-center">
+          <h4 class="mb-0">⚙ Cadastrar Evento</h4>
+        </div>
+
+        <div class="card-body">
+
+          @if (mensagem) {
+            <div class="alert alert-{{ tipoMensagem }} alert-dismissible fade show"
+                 role="alert">
+              {{ mensagem }}
+              <button type="button" class="btn-close" (click)="mensagem=''"></button>
+            </div>
+          }
+
+          <form [formGroup]="formularioPalestras" (ngSubmit)="onSubmit()">
+
+            <!-- Título -->
+            <div class="mb-3">
+              <label for="titulo" class="form-label fw-semibold">Título</label>
+              <input type="text" id="titulo" class="form-control"
+                     formControlName="titulo" placeholder="Título da palestra">
+              @if (formularioPalestras.get('titulo')?.hasError('required') &&
+                   formularioPalestras.get('titulo')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>título</strong> é obrigatório!
+                </div>
+              }
+            </div>
+
+            <!-- Descrição -->
+            <div class="mb-3">
+              <label for="descricao" class="form-label fw-semibold">Descrição</label>
+              <textarea id="descricao" class="form-control" rows="3"
+                        formControlName="descricao"
+                        placeholder="Descreva brevemente o evento"></textarea>
+              @if (formularioPalestras.get('descricao')?.hasError('required') &&
+                   formularioPalestras.get('descricao')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>descrição</strong> é obrigatório!
+                </div>
+              }
+            </div>
+
+            <!-- Palestrante -->
+            <div class="mb-3">
+              <label for="nomePalestrante" class="form-label fw-semibold">
+                Palestrante
+              </label>
+              <input type="text" id="nomePalestrante" class="form-control"
+                     formControlName="nomePalestrante"
+                     placeholder="Nome do palestrante">
+              @if (formularioPalestras.get('nomePalestrante')?.hasError('required') &&
+                   formularioPalestras.get('nomePalestrante')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>palestrante</strong> é obrigatório!
+                </div>
+              }
+            </div>
+
+            <!-- Local -->
+            <div class="mb-3">
+              <label for="localEvento" class="form-label fw-semibold">Local</label>
+              <input type="text" id="localEvento" class="form-control"
+                     formControlName="localEvento" placeholder="Local do evento">
+              @if (formularioPalestras.get('localEvento')?.hasError('required') &&
+                   formularioPalestras.get('localEvento')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>local</strong> é obrigatório!
+                </div>
+              }
+            </div>
+
+            <!-- Data e Hora -->
+            <div class="mb-4">
+              <label for="dataEvento" class="form-label fw-semibold">
+                Data e Hora
+              </label>
+              <input type="datetime-local" id="dataEvento" class="form-control"
+                     formControlName="dataEvento">
+              @if (formularioPalestras.get('dataEvento')?.hasError('required') &&
+                   formularioPalestras.get('dataEvento')?.touched) {
+                <div class="alert alert-warning py-1 mt-1 mb-0">
+                  Campo <strong>data</strong> é obrigatório!
+                </div>
+              }
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-danger"
+                      [disabled]="!formularioPalestras.valid">
+                Cadastrar Evento
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
