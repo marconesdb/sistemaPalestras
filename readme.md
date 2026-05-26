@@ -285,4 +285,4 @@ UPDATE usuarios SET admin = 1 WHERE email = 'seu@email.com';
 
 ## Autor
 
-Desenvolvido como projeto prático do **Módulo IV** — Projeto com Angular, Node.js e MySQL.
+Desenvolvido por Marcone Silva de Brito — Projeto com Angular, Node.js e MySQL.
